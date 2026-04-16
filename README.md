@@ -1,114 +1,99 @@
 <h1 align="center">🎬 AI YouTube Automation</h1>
 
 <p align="center">
-  <img src="icon.png" width="120"/>
+  <img src="assets/icon.png" alt="AI YouTube Automation Logo" width="120" />
 </p>
 
-A production-ready AI SaaS mobile app (Expo / React Native) that automates end-to-end YouTube video creation — from topic input to published video.
+<p align="center">
+  🚀 End-to-end AI-powered YouTube video creation app  
+  <br/>
+  From idea → script → voice → video → upload — fully automated
+</p>
 
 ---
 
-## Features
+## ✨ Overview
+
+AI YouTube Automation is a **production-ready AI SaaS mobile app** built with Expo & React Native that automates the complete YouTube content pipeline.
+
+👉 Just enter a topic — the app handles everything:
+- Script writing  
+- Voice generation  
+- Visuals  
+- Editing  
+- Thumbnail  
+- Upload  
+
+---
+
+## 🔥 Features
 
 | Feature | Description |
-|---------|-------------|
-| Script Generation | GPT-4o generates hooks, intro, body, CTA in 5 tones |
-| Voiceover | ElevenLabs V3 multilingual voices with emotion control |
-| Stock Visuals | Pexels + Pixabay auto-matched to script scenes |
-| AI Thumbnails | DALL·E 3 generates A/B/C variants |
-| Auto Subtitles | Whisper-generated SRT burned into video |
-| Video Editor | Timeline editor — reorder scenes, swap clips, adjust voice |
-| YouTube Upload | Auto-upload with SEO title, description, tags, thumbnail |
-| Scheduler | Queue & schedule daily auto-posting |
-| Multi-channel | Manage unlimited YouTube channels |
-| Analytics | Views, CTR, watch time from YouTube Data API |
-| Subscriptions | Free / Pro / Enterprise via Stripe |
+|--------|------------|
+| 🧠 Script Generation | GPT-4o creates engaging scripts (hook, intro, body, CTA) |
+| 🎙 Voiceover | ElevenLabs multilingual AI voices with emotion |
+| 🎥 Stock Visuals | Auto-fetch visuals from Pexels & Pixabay |
+| 🖼 AI Thumbnails | Generate high-converting thumbnails (A/B testing) |
+| 📝 Subtitles | Auto captions via Whisper (SRT + burn-in) |
+| ✂️ Video Editor | Timeline-based editing inside app |
+| 📤 YouTube Upload | Auto upload with SEO metadata |
+| ⏰ Scheduler | Schedule daily/weekly posts |
+| 📊 Analytics | CTR, watch time, views tracking |
+| 💳 Monetization | Stripe subscriptions (Free / Pro / Enterprise) |
 
 ---
 
-## Tech Stack
+## 📸 Screenshots (Coming Soon)
 
-- **Frontend**: Expo 51 + React Native, Expo Router (file-based), NativeWind (Tailwind)
-- **State**: Zustand + MMKV (persistent settings)
-- **Data Fetching**: TanStack Query + Axios with auto token refresh
-- **Auth**: Google OAuth via expo-auth-session
-- **Payments**: Stripe React Native SDK
-- **AI**: OpenAI GPT-4o, ElevenLabs V3, DALL·E 3, Whisper
-- **Video APIs**: Pexels, Pixabay, Runway ML
-- **Backend**: Node.js REST API (separate repo) + Python video microservice
+<!-- Add screenshots here -->
+<!-- ![App Screenshot](assets/screenshot1.png) -->
 
 ---
 
-## Project Structure
+## 🛠 Tech Stack
 
-```
+### 📱 Frontend
+- Expo 51 + React Native  
+- Expo Router (file-based navigation)  
+- NativeWind (Tailwind CSS)  
+
+### ⚙️ State & Data
+- Zustand + MMKV (fast storage)  
+- TanStack Query + Axios  
+
+### 🔐 Auth & Payments
+- Google OAuth (expo-auth-session)  
+- Stripe React Native SDK  
+
+### 🤖 AI & APIs
+- OpenAI GPT-4o (script generation)  
+- ElevenLabs (voice AI)  
+- DALL·E 3 (thumbnails)  
+- Whisper (subtitles)  
+- Pexels + Pixabay (visuals)  
+- Runway ML (video AI)  
+
+### 🖥 Backend
+- Node.js REST API  
+- Python video processing microservice  
+
+---
+
+## 📂 Project Structure
+
 AI_Youtube_Automation/
-├── app/
-│   ├── _layout.tsx              # Root layout (QueryClient, Stripe, Toast)
-│   ├── auth/
-│   │   ├── _layout.tsx          # Redirect to app if authenticated
-│   │   └── login.tsx            # Google OAuth login screen
-│   └── (app)/
-│       ├── _layout.tsx          # Tab navigator
-│       ├── index.tsx            # Dashboard
-│       ├── create/
-│       │   ├── index.tsx        # Wizard Step 1: Topic + tone + template
-│       │   ├── script.tsx       # Wizard Step 2: Review & edit script
-│       │   ├── voice.tsx        # Wizard Step 3: Voice selection
-│       │   └── preview.tsx      # Wizard Step 4+5: Thumbnail + publish
-│       ├── editor/
-│       │   └── [id].tsx         # Timeline video editor
-│       ├── channels/
-│       │   └── index.tsx        # YouTube channel manager
-│       ├── analytics.tsx        # Analytics dashboard
-│       └── settings/
-│           └── index.tsx        # API keys, subscription, preferences
-├── src/
-│   ├── components/
-│   │   ├── ui/                  # Button, Card, Badge, Input, Select, etc.
-│   │   └── dashboard/           # VideoCard
-│   ├── services/
-│   │   ├── api.ts               # Axios client with auto token refresh + retry
-│   │   ├── scriptService.ts     # OpenAI script generation
-│   │   ├── voiceService.ts      # ElevenLabs voiceover
-│   │   ├── videoService.ts      # Video pipeline + stock footage
-│   │   ├── thumbnailService.ts  # DALL·E thumbnail generation
-│   │   ├── youtubeService.ts    # YouTube Data API + OAuth
-│   │   └── stripeService.ts     # Stripe subscriptions
-│   ├── store/
-│   │   ├── authStore.ts         # User auth state (Zustand)
-│   │   ├── videoStore.ts        # Video projects + creation wizard
-│   │   ├── channelStore.ts      # YouTube channels + analytics
-│   │   └── settingsStore.ts     # API keys + preferences (MMKV)
-│   ├── hooks/
-│   │   ├── useVideoCreation.ts  # Pipeline polling hook
-│   │   ├── useYouTubeUpload.ts  # Upload progress hook
-│   │   ├── useAnalytics.ts      # Analytics data hook
-│   │   ├── usePlanGate.ts       # Feature gating by subscription plan
-│   │   └── useDebounce.ts       # Debounce input/callback
-│   ├── types/index.ts           # All TypeScript types
-│   └── utils/
-│       ├── constants.ts         # Colors, tones, languages, templates, plans
-│       ├── helpers.ts           # Formatters, SRT generator, retry util
-│       └── logger.ts            # Structured logger with log levels
-├── .env.example                 # Required environment variables
-├── app.json                     # Expo config
-├── babel.config.js
-├── tailwind.config.js
-└── tsconfig.json
-```
+├── app/                # Expo Router screens
+├── src/                # Components, services, hooks, store
+├── assets/             # Images, icons
+├── .env.example
+├── app.json
+├── package.json
 
 ---
 
-## Setup
+## 🚀 Getting Started
 
-### 1. Prerequisites
-
-- Node.js 20+
-- Expo CLI: `npm install -g expo-cli`
-- Expo Go app on your phone (iOS / Android)
-
-### 2. Clone & install
+### 1. Install dependencies
 
 ```bash
 git clone https://github.com/your-org/ai-youtube-automation.git
@@ -116,117 +101,92 @@ cd AI_Youtube_Automation
 npm install
 ```
 
-### 3. Configure environment
+---
+
+### 2. Setup environment
 
 ```bash
 cp .env.example .env
-# Fill in your Google OAuth client IDs and Stripe publishable key
 ```
 
-### 4. Configure Google OAuth
+Add your keys:
+- Google OAuth
+- Stripe
+- API endpoints
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a project → APIs & Services → Credentials
-3. Create OAuth 2.0 Client IDs for:
-   - Web (for `expo-auth-session` token exchange)
-   - iOS (bundle ID: `com.aiyoutube.automation`)
-   - Android (package: `com.aiyoutube.automation`)
-4. Enable: **YouTube Data API v3**, **Google People API**
-5. Add `aiyoutube://` as an authorized redirect URI
+---
 
-### 5. Start the app
+### 3. Start app
 
 ```bash
 npx expo start
-# Scan QR code with Expo Go
 ```
 
-### 6. Add API Keys in app
-
-Open the app → **Settings** → **API Keys** and enter:
-
-| Key | Where to get |
-|-----|-------------|
-| OpenAI | [platform.openai.com](https://platform.openai.com/api-keys) |
-| ElevenLabs | [elevenlabs.io/api](https://elevenlabs.io/api) |
-| Pexels | [pexels.com/api](https://www.pexels.com/api/) |
-| Pixabay | [pixabay.com/api/docs](https://pixabay.com/api/docs/) |
-| Runway ML | [runwayml.com](https://runwayml.com) |
+Scan QR with Expo Go 📱
 
 ---
 
-## Example Workflow
+## 🔑 API Keys Required
 
-```
-User inputs: "10 mind-blowing facts about black holes"
-     ↓
-[Script Service]  GPT-4o → hook + intro + 10 body points + CTA
-     ↓
-[Voice Service]   ElevenLabs V3 → MP3 voiceover (~5 min)
-     ↓
-[Visual Service]  Pexels/Pixabay → 10 matched stock clips
-     ↓
-[Subtitle Service] Whisper → SRT captions → burned into video
-     ↓
-[Render Service]  FFmpeg → final MP4 (1080p)
-     ↓
-[Thumbnail]       DALL·E 3 → 3 thumbnail variants (A/B/C)
-     ↓
-[Upload Service]  YouTube Data API → published with SEO metadata
-     ↓
-Video live on YouTube ✅
-```
+| Service | Link |
+|--------|------|
+| OpenAI | https://platform.openai.com/api-keys |
+| ElevenLabs | https://elevenlabs.io/api |
+| Pexels | https://www.pexels.com/api/ |
+| Pixabay | https://pixabay.com/api/docs |
+| Runway ML | https://runwayml.com |
 
 ---
 
-## Subscription Plans
+## ⚙️ Example Workflow
 
-| | Free | Pro ($29/mo) | Enterprise ($99/mo) |
-|--|------|-------------|---------------------|
+Topic Input
+   ↓
+GPT-4o → Script
+   ↓
+ElevenLabs → Voice
+   ↓
+Stock APIs → Visuals
+   ↓
+Whisper → Subtitles
+   ↓
+FFmpeg → Final Video
+   ↓
+YouTube API → Upload 🚀
+
+---
+
+## 💰 Subscription Plans
+
+| Plan | Free | Pro | Enterprise |
+|------|------|-----|-----------|
 | Videos/month | 3 | 30 | Unlimited |
-| Max duration | 5 min | 15 min | 60 min |
+| Duration | 5 min | 15 min | 60 min |
 | Channels | 1 | 3 | Unlimited |
-| Auto scheduling | ✗ | ✓ | ✓ |
-| Bulk creation | ✗ | ✓ | ✓ |
-| AI Avatars | ✗ | ✗ | ✓ |
-| Analytics | ✗ | ✓ | ✓ |
+| Analytics | ❌ | ✅ | ✅ |
 
 ---
 
-## Backend API (Required)
+## ⚠️ Disclaimer
 
-This app requires a backend server. The API contract follows REST with JWT auth.
-
-Key endpoints consumed by the app:
-
-```
-POST /auth/google          — Exchange Google token
-GET  /auth/me              — Get current user
-POST /scripts/generate     — Generate script (proxies OpenAI)
-POST /voice/generate       — Start voiceover job (proxies ElevenLabs)
-POST /videos               — Create project
-POST /videos/:id/pipeline/start  — Start full generation pipeline
-GET  /videos/:id/pipeline/status — Poll pipeline status
-POST /youtube/upload       — Upload to YouTube
-GET  /youtube/channels     — List connected channels
-GET  /youtube/channels/:id/analytics — Get analytics
-POST /billing/subscribe    — Create Stripe subscription
-```
+This project is for **educational and SaaS demonstration purposes**.  
+YouTube automation should follow platform policies and content guidelines.
 
 ---
 
-## Performance Optimisations
+## 📜 Author
 
-- **MMKV** for settings (10× faster than AsyncStorage)
-- **TanStack Query** with 30s stale time reduces redundant fetches
-- **Axios retry** with exponential back-off (3 attempts, 2× multiplier)
-- **Pipeline polling** every 5s with 1hr timeout
-- **Zustand** for zero-boilerplate reactive state
-- **FlashList** for virtualised video lists
-- **Parallel thumbnail generation** — 3 DALL·E requests fired concurrently
+Mohit Bainsla
 
 ---
 
-## License
+## 🙌 Contributing
 
-MIT
+Pull requests are welcome!  
+For major changes, please open an issue first.
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!

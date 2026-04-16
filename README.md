@@ -4,8 +4,6 @@
   <img src="icon.png" width="120"/>
 </p>
 
-# AI YouTube Automation
-
 A production-ready AI SaaS mobile app (Expo / React Native) that automates end-to-end YouTube video creation — from topic input to published video.
 
 ---

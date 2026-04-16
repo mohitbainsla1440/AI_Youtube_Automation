@@ -1,7 +1,7 @@
 <h1 align="center">🎬 AI YouTube Automation</h1>
 
 <p align="center">
-  <img src="assets/icon.png" alt="AI YouTube Automation Logo" width="120" />
+  <img src="icon.png" alt="AI YouTube Automation Logo" width="120" />
 </p>
 
 <p align="center">
